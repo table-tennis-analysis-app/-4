@@ -55,7 +55,7 @@ function updatePointInputs() {
         pointInputs.appendChild(label);
     }
 }
-
+//勝率のグラフを作る
 totalSets.addEventListener('input', updatePointInputs);
 
 const ctx = document.getElementById('winrateChart').getContext('2d');
@@ -87,21 +87,21 @@ const winrateChart = new Chart(ctx, {
         },
     },
 });
-
+//画面を切り替える処理
 function showSection(sectionId) {
     sections.forEach(section => section.classList.toggle('active', section.id === sectionId));
     tabButtons.forEach(button => button.classList.toggle('active', button.dataset.section === sectionId));
 }
-
+//ブラウザのlocalStorageに保存してあるデータを読み込むための関数
 function loadStorage(key) {
     const raw = localStorage.getItem(key);
     return raw ? JSON.parse(raw) : [];
 }
-
+//データをブラウザのlocalStorageに保存するための関数
 function saveStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
-
+//保存されている卓球の試合記録を一覧画面に表示するための処理
 function updateMatchList() {
     matchList.innerHTML = '';
     matches.slice().reverse().forEach((match, reversedIndex) => {
